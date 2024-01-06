@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>{% if id %}Edit Post{% else %}Create Post{% endif %}</h1>
+
+  <form method="post" action="{% if id %}{% url 'edit_post' id %}{% else %}{% url 'create_post' %}{% endif %}">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" value="Save">
+  </form>
+
+{% endblock content %}
+
+
+{% comment %} {% extends 'base.html' %}
+
+{% block content %}
+
+  <h1>Edit Post</h1>
+  
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Save changes">
+  </form>
+
+  <a href="{% url 'posts' %}">Cancel</a>
+
+{% endblock content %} {% endcomment %}
